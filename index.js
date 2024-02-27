@@ -172,10 +172,12 @@ module.exports = function sanitizer_plugin(md, options) {
 
       // whitelisted tags
       const newRegExp = new RegExp(
-        '<(/?)(b|blockquote|code|em|h[1-6]|li|ol' + extraTags.length &&
-          extraTags.join('|') + '(?: start="d+")?|p|pre|s|sub|sup|strong|ul)>',
+        `<(/?)(b|blockquote|code|em|h[1-6]|li|ol${
+          extraTags.length ? '|' + extraTags.join('|') : ''
+        }(?: start="d+")?|p|pre|s|sub|sup|strong|ul)>`,
         'i'
       );
+      console.log(newRegExp);
       match = tag.match(newRegExp);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
         runBalancer = true;
