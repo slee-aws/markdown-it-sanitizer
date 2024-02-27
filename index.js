@@ -177,7 +177,6 @@ module.exports = function sanitizer_plugin(md, options) {
         }(?: start="d+")?|p|pre|s|sub|sup|strong|ul)>`,
         'i'
       );
-      console.log(newRegExp);
       match = tag.match(newRegExp);
       if (match && !/<\/ol start="\d+"/i.test(tag)) {
         runBalancer = true;
